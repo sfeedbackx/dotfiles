@@ -23,7 +23,7 @@ background = ${colors.background}
 foreground = ${colors.text}
 border-color = ${colors.inactive_background}
 
-bottom = true
+top = true
 
 line-size = 6pt
 border-size = 4pt
