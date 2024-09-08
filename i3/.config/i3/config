@@ -55,9 +55,10 @@ bindsym $mod+Return exec kitty
 
 # kill focused windoiw
 bindsym $mod+Shift+A kill
-
+bindsym $mod+i exec ~/Downloads/ideaIU-2024.2.1/idea-IU-242.21829.142/bin/idea
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -b -fn "BlexMono Nerd Font-13" -nb "$bg-color" -nf "$text-color" -sb "$bg-color" -sf "#9575cd"
+bindsym $mod+d exec --no-startup-id rofi -show drun
+#dmenu_run -b -fn "BlexMono Nerd Font-13" -nb "$bg-color" -nf "$text-color" -sb "$bg-color" -sf "#9575cd"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
