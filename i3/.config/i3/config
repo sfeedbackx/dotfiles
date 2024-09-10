@@ -156,11 +156,14 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 
 assign [class="Brave-browser"]  $ws2 
 
+exec brave-browser  
 assign [class="discord"]  $ws4 
 exec_always discord
 
 
 assign [class="zen"]  $ws3 
+
+exec_always zen
 exec_always zen
 gaps inner 5
 gaps outer 5
