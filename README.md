@@ -44,21 +44,30 @@ Ensure that GNU Stow is installed on your system. You can install it using your 
 
 - **Debian/Ubuntu**:
 
-  \```sh
+  \```bash
   sudo apt install stow
   \```
 
 - **macOS (Homebrew)**:
 
-  \```sh
+  \```bash
   brew install stow
   \```
 
 - **Arch Linux**:
 
-  \```sh
+  \```bash
   sudo pacman -S stow
   \```
+  
+### 4. Install Required Tools
+
+The i3 configuration in this repository relies on specific tools. Install them with a single command based on your distribution:
+
+ \```bash
+sudo apt install arandr feh i3lock-fancy compton xautolock i3lock kitty thunar rofi maim xdotool xclip pulseaudio-utils brightnessctl
+\```
+
 
 ### 3. Stow the Dotfiles
 
