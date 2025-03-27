@@ -44,36 +44,45 @@ Ensure that GNU Stow is installed on your system. You can install it using your 
 
 - **Debian/Ubuntu**:
 
-  \```sh
+  ```bash
   sudo apt install stow
-  \```
+  ```
 
 - **macOS (Homebrew)**:
 
-  \```sh
+  ```bash
   brew install stow
-  \```
+  ```
 
 - **Arch Linux**:
 
-  \```sh
+  ```bash
   sudo pacman -S stow
-  \```
+  ```
+  
+### 4. Install Required Tools
+
+The i3 configuration in this repository relies on specific tools. Install them with a single command based on your distribution:
+
+ ```bash
+sudo apt install arandr feh i3lock-fancy compton xautolock i3lock kitty thunar rofi maim xdotool xclip pulseaudio-utils brightnessctl
+```
+
 
 ### 3. Stow the Dotfiles
 
 Run the following command to create symlinks for the desired configuration:
 
-\```sh
+```sh
 stow <directory-name>
-\```
+```
 
 For example, to set up your shell and Vim configurations, run:
 
-\```sh
+```sh
 stow bash
 stow i3
-\```
+```
 
 This will create symlinks in your home directory, pointing to the files in the repository.
 
@@ -87,21 +96,21 @@ After setting up, use the following commands to manage your dotfiles:
 
 - **To apply a new configuration**: 
 
-  \```sh
+  ```sh
   stow <directory-name>
-  \```
+  ```
 
 - **To remove a configuration**:
 
-  \```sh
+  ```sh
   stow -D <directory-name>
-  \```
+  ```
 
 For example, to remove the i3 configuration:
 
-\```sh
+```sh
 stow i3
-\```
+```
 
 
 ## 🤝 Contributing
