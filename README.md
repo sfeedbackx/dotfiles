@@ -65,7 +65,7 @@ Ensure that GNU Stow is installed on your system. You can install it using your 
 The i3 configuration in this repository relies on specific tools. Install them with a single command based on your distribution:
 
  ```bash
-sudo apt install arandr feh i3lock-fancy compton xautolock i3lock kitty thunar rofi maim xdotool xclip pulseaudio-utils brightnessctl
+sudo apt install lxappearance arandar arandr feh i3lock-fancy compton xautolock i3lock kitty thunar rofi maim xdotool xclip pulseaudio-utils brightnessctl
 ```
 
 
