@@ -25,7 +25,7 @@ This approach keeps your home directory clean, organized, and version-controlled
 - **Other Configurations**:
   - Additional settings for applications like `kitty` (terminal), pk10, and more!
 - **in the Future**
- -I will add neovim (still using vscode retard I know and Tmux)
+ -I will add neovim and Tmux(still using vscode)
 ## 🚀 Installation
 
 To set up these dotfiles on your system, follow these steps:
@@ -65,7 +65,7 @@ Ensure that GNU Stow is installed on your system. You can install it using your 
 The i3 configuration in this repository relies on specific tools. Install them with a single command based on your distribution:
 
  ```bash
-sudo apt install lxappearance arandar arandr feh i3lock-fancy compton xautolock i3lock kitty thunar rofi maim xdotool xclip pulseaudio-utils brightnessctl
+sudo apt install  lxappearance arandar arandr feh i3lock-fancy compton xautolock i3lock kitty thunar rofi maim xdotool xclip pulseaudio-utils brightnessctl
 ```
 
 
