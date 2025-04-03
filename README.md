@@ -25,7 +25,7 @@ This approach keeps your home directory clean, organized, and version-controlled
 - **Other Configurations**:
   - Additional settings for applications like `kitty` (terminal), pk10, and more!
 - **in the Future**
- -I will add neovim and Tmux(still using vscode)
+ - I will add neovim and Tmux(still using vscode)
 ## 🚀 Installation
 
 To set up these dotfiles on your system, follow these steps:
