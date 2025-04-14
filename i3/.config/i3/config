@@ -5,9 +5,9 @@
 # === General Settings ===
 set $mod Mod4
 font pango:MesloLGS Nerd Font Mono Bold 14
-for_window [class="^.*"] border pixel 2
-gaps inner 5
-gaps outer 5
+for_window [class="^.*"] border pixel 3
+gaps inner 1
+gaps outer 1
 
 # === Display and Hardware Settings ===
 set $fm eDP-1
@@ -25,6 +25,9 @@ exec --no-startup-id compton
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch_polybar.sh
 exec --no-startup-id flatpak run --command=easyeffects com.github.wwmm.easyeffects --gapplication-service
+# === Python Script ===
+#exec_always python3 ~/.config/i3/i3_auto_workspace.py
+
 
 # === Screen Locking and Power Management ===
 exec --no-startup-id xset +dpms          # Explicitly ENABLE DPMS (critical!)
@@ -62,12 +65,12 @@ set $mantle    #181825
 set $crust     #11111b
 
 # === Window Appearance ===
-client.focused           $mantle   $mauve $mantle  $rosewater $mauve
-client.focused_inactive  $overlay0 $base  $text    $rosewater $overlay0
-client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
-client.urgent            $peach    $base  $peach   $overlay0  $peach
-client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
-client.background        $base
+client.focused           $blue     $blue $blue  $blue   $blue 
+client.focused_inactive  $blue     $blue $blue  $blue   $blue  
+client.unfocused        $blue     $blue $blue  $blue   $blue  
+client.urgent           $blue     $blue $blue  $blue   $blue  
+client.placeholder      $blue     $blue $blue  $blue   $blue  
+client.background        $blue
 
 # === Bar Configuration ===
 #bar {
