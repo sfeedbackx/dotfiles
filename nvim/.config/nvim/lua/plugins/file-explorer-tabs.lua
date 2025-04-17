@@ -53,8 +53,8 @@ return {
                     mode = "buffers",
                     diagnostics = "nvim_lsp",
                     separator_style = "none", -- Flat rectangular tabs
-                    show_buffer_close_icons = false,
-                    show_close_icon = false,
+                    show_buffer_close_icons = true,
+                    show_close_icon = true,
                     always_show_bufferline = true,
                     tab_size = 20,        -- For wider tabs
                     max_name_length = 18, -- Adjust tab name length
