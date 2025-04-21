@@ -4,41 +4,46 @@ return {
         event = "VeryLazy",
         dependencies = {
             "MunifTanjim/nui.nvim",
-            -- Removed nvim-notify since we're disabling notifications
         },
         config = function()
-            -- Ensure line numbers
             vim.opt.relativenumber = true
             vim.opt.number = true
 
             require("noice").setup({
-                -- Disable notifications completely
+                -- Disable custom notification UI
                 notify = {
                     enabled = false,
                 },
 
-                -- Keep all other features
+                -- Disable Noice’s message view — fallback to default Neovim
+                messages = {
+                    enabled = false,
+                },
+
+                -- Keep LSP enhancements
                 lsp = {
                     override = {
                         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                         ["vim.lsp.util.stylize_markdown"] = true,
                         ["cmp.entry.get_documentation"] = true,
                     },
-                    hover = { enabled = true },     -- Keep LSP hover
-                    signature = { enabled = true }, -- Keep signature help
+                    hover = { enabled = true },
+                    signature = { enabled = true },
+                    message = {
+                        enabled = false, -- let Neovim handle LSP messages normally
+                    },
                 },
 
-                -- Preserve nice cmdline
+                -- Keep the pop-up cmdline
                 cmdline = {
                     enabled = true,
                     view = "cmdline_popup",
                 },
 
-                -- Default presets
                 presets = {
                     bottom_search = true,
                     command_palette = true,
-                    long_message_to_split = true,
+                    long_message_to_split = false, -- also disables top-bar override
                     inc_rename = false,
                     lsp_doc_border = true,
                 },

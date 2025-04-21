@@ -18,31 +18,43 @@ return {
         { "hrsh7th/cmp-cmdline" },
     },
     config = function()
-        local lsp = require("lsp-zero").preset({})
+        -- LSP Zero preset
+        local lsp = require("lsp-zero").preset("recommended")
 
-        -- LSP Configuration (from your lsp-config.lua)
-        lsp.on_attach(function(client, bufnr)
+        lsp.on_attach(function(_, bufnr)
             local opts = { buffer = bufnr, remap = false }
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "<leader>vcs", vim.lsp.buf.workspace_symbol, opts)
-            vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-            vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-            vim.keymap.set("n", "<leader>vgr", vim.lsp.buf.references, opts)
-            vim.keymap.set("n", "<leader>vcr", vim.lsp.buf.rename, opts)
-            vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+            local map = vim.keymap.set
+
+
+            map("n", "gd", vim.lsp.buf.definition, opts)
+            map("n", "K", vim.lsp.buf.hover, opts)
+            map("n", "<leader>vcs", vim.lsp.buf.workspace_symbol, opts)
+            map("n", "<leader>vd", vim.diagnostic.open_float, opts)
+            map("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+            map("n", "<leader>vgr", vim.lsp.buf.references, opts)
+            map("n", "<leader>vcr", vim.lsp.buf.rename, opts)
+            map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+            map("n", "[d", vim.diagnostic.goto_next, opts)
+            map("n", "]d", vim.diagnostic.goto_prev, opts)
         end)
 
-        -- Configure diagnostics
+        -- Diagnostics styling
         vim.diagnostic.config({
             virtual_text = true,
             signs = true,
+            float = { border = "rounded" },
             update_in_insert = false,
         })
 
-        -- Mason setup (from your lsp-config.lua)
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+            vim.lsp.handlers.hover, { border = "rounded" }
+        )
+
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+            vim.lsp.handlers.signature_help, { border = "rounded" }
+        )
+
+        -- Mason setup
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
@@ -51,40 +63,15 @@ return {
                 "jsonls", "html", "elixirls", "tailwindcss",
                 "tflint", "dockerls", "bashls",
                 "marksman", "cucumber_language_server",
-                "astro",
+                "astro", "pylsp",
             },
+            handlers = {
+                lsp.default_setup,
+
+            }
         })
 
-        -- Language servers (from your lsp-config.lua)
-        local lspconfig = require("lspconfig")
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-        local servers = {
-            "clangd", "ts_ls", "eslint", "lua_ls",
-            "jsonls", "html", "elixirls", "tailwindcss",
-            "tflint", "pylsp", "dockerls", "bashls",
-            "marksman", "solargraph", "cucumber_language_server",
-            "gopls", "astro",
-        }
-
-        for _, server in ipairs(servers) do
-            lspconfig[server].setup({
-                capabilities = capabilities,
-            })
-        end
-
-        -- Special setup for Lua (from your lsp-config.lua)
-        lspconfig.lua_ls.setup({
-            settings = {
-                Lua = {
-                    diagnostics = { globals = { "vim" } },
-                    workspace = { checkThirdParty = false },
-                    telemetry = { enable = false },
-                },
-            },
-        })
-
-        -- Autocompletion setup (from completions.lua)
+        -- Autocompletion setup
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
@@ -97,8 +84,8 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-                ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-p>"] = cmp.mapping.select_prev_item(),
+                ["<C-n>"] = cmp.mapping.select_next_item(),
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(),
@@ -141,7 +128,7 @@ return {
             },
         })
 
-        -- Cmdline setup
+        -- Cmdline completions
         cmp.setup.cmdline("/", {
             mapping = cmp.mapping.preset.cmdline(),
             sources = { { name = "buffer" } },
