@@ -59,7 +59,7 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls", "clangd", "ts_ls", "eslint",
-                "rust_analyzer", "kotlin_language_server", "jdtls",
+                "rust_analyzer", "kotlin_language_server",
                 "jsonls", "html", "elixirls", "tailwindcss",
                 "tflint", "dockerls", "bashls",
                 "marksman", "cucumber_language_server",

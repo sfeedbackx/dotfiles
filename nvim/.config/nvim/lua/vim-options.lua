@@ -60,8 +60,3 @@ vim.keymap.set(
     "<leader>el",
     "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i"
 )
-
-
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
