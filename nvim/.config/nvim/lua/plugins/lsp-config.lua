@@ -21,6 +21,11 @@ return {
         -- LSP Zero preset
         local lsp = require("lsp-zero").preset("recommended")
 
+        lsp.set_sign_icons({
+            -- Disable the automatic signature help
+            signature_help = nil,
+        })
+
         lsp.on_attach(function(_, bufnr)
             local opts = { buffer = bufnr, remap = false }
             local map = vim.keymap.set

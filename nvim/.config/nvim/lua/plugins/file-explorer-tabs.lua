@@ -21,7 +21,9 @@ return {
             })
 
             -- Toggle file explorer
-            vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
+            vim.keymap.set("n", "<leader>n", function()
+                require("nvim-tree.api").tree.toggle()
+            end, { desc = "Toggle File Explorer" })
 
             -- Auto-close nvim-tree if it's the only open window
             vim.api.nvim_create_autocmd("QuitPre", {
@@ -72,14 +74,22 @@ return {
             })
 
             -- Keymaps for buffer navigation
-            vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { desc = "Next Buffer" })
-            vim.keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { desc = "Previous Buffer" })
-            vim.keymap.set("n", "<leader>bb", ":BufferLinePick<CR>", { desc = "Pick a Buffer" })
-            vim.keymap.set("n", "<leader>bc", ":BufferLinePickClose<CR>", { desc = "Pick and Close Buffer" })
-            vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close Current Buffer" })
+            -- First, make sure you have bufferline required at the top of your config
+            local bufferline = require('bufferline')
+
+            vim.keymap.set("n", "<Tab>", function() bufferline.cycle(1) end, { desc = "Next Buffer" })
+            vim.keymap.set("n", "<S-Tab>", function() bufferline.cycle(-1) end, { desc = "Previous Buffer" })
+            vim.keymap.set("n", "<leader>bb", function() bufferline.pick() end, { desc = "Pick a Buffer" })
+            vim.keymap.set("n", "<leader>bc", function() bufferline.pick_close() end, { desc = "Pick and Close Buffer" })
+            vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_buf_delete(0, {}) end,
+                { desc = "Close Current Buffer" })
 
 
-            vim.keymap.set("n", "<leader>q", ":bp|bd #<CR>", { desc = "Close buffer and go back" })
+            vim.keymap.set("n", "<leader>q", function()
+                local current_buf = vim.api.nvim_get_current_buf()
+                vim.cmd("bp")                                          -- Go to the previous buffer
+                vim.api.nvim_buf_delete(current_buf, { force = true }) -- Delete the original buffer
+            end, { desc = "Close buffer and go back" })
         end,
     },
 }
