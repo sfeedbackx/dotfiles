@@ -10,9 +10,10 @@ gaps inner 1
 gaps outer 2
 
 # === Display and Hardware Settings ===
+exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
 set $fm eDP-1
 set $sm HDMI-1
-exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/gogeta-dragon-ball-1920x1080-17130.jpeg
+exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/samt.jpg
 #exec --no-startup-id xsettingsd
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
