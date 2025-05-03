@@ -80,7 +80,6 @@ return {
             vim.keymap.set("n", "<Tab>", function() bufferline.cycle(1) end, { desc = "Next Buffer" })
             vim.keymap.set("n", "<S-Tab>", function() bufferline.cycle(-1) end, { desc = "Previous Buffer" })
             vim.keymap.set("n", "<leader>bb", function() bufferline.pick() end, { desc = "Pick a Buffer" })
-            vim.keymap.set("n", "<leader>bc", function() bufferline.pick_close() end, { desc = "Pick and Close Buffer" })
             vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_buf_delete(0, {}) end,
                 { desc = "Close Current Buffer" })
 

@@ -4,22 +4,22 @@
 
 # === General Settings ===
 set $mod Mod4
-font pango:MesloLGS Nerd Font Mono Bold 14
-for_window [class="^.*"] border pixel 3
-gaps inner 1
-gaps outer 2
+font pango:MesloLGS Nerd Font Mono Bold 14 
+default_border pixel 1
+#gaps inner 1
+#gaps outer 1
 
 # === Display and Hardware Settings ===
 exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
 set $fm eDP-1
 set $sm HDMI-1
 exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/samt.jpg
-#exec --no-startup-id xsettingsd
+exec --no-startup-id xsettingsd
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
 # === Startup Programs ===
-exec --no-startup-id csd-xsettings
+#exec --no-startup-id csd-xsettings
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
 exec_always --no-startup-id killall polybar
@@ -31,10 +31,10 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 
 # === Screen Locking and Power Management ===
 exec --no-startup-id xset +dpms          # Explicitly ENABLE DPMS (critical!)
-exec --no-startup-id xset dpms 600 900 0 # Standby: 10m (600s), Suspend: 15m (900s), Off: Never (0)
+exec --no-startup-id xset dpms 600 900 950 # Standby: 10m (600s), Suspend: 15m (900s), Off: Never (0)
 exec --no-startup-id xset s noblank      # Disable screensaver-driven blanking
 exec --no-startup-id xset s off          # Disable legacy screensaver entirely
-exec --no-startup-id xautolock -time 10 -locker "i3lock-fancy" -detectsleep
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen -l" -detectsleep
 
 # === Color Scheme ===
 set $rosewater #f5e0dc
@@ -65,12 +65,12 @@ set $mantle    #181825
 set $crust     #11111b
 
 # === Window Appearance ===
-client.focused           $blue     $blue $blue  $blue   $blue 
-client.focused_inactive  $blue     $blue $blue  $blue   $blue  
-client.unfocused        $blue     $blue $blue  $blue   $blue  
-client.urgent           $blue     $blue $blue  $blue   $blue  
-client.placeholder      $blue     $blue $blue  $blue   $blue  
-client.background        $blue
+client.focused           $blue     $blue   $text  $blue   $text
+client.focused_inactive  $surface0 $surface0 $subtext0 $surface0 $subtext0
+client.unfocused         $surface0 $surface0 $subtext0 $surface0 $subtext0
+client.urgent            $red      $red    $text  $red    $text
+client.placeholder       $blue     $blue   $text  $blue   $text
+client.background        $base
 
 # === Bar Configuration ===
 #bar {
@@ -163,7 +163,7 @@ bindsym $mod+w exec --no-startup-id $HOME/dotfiles/rofi/.config/rofi/rofi-wifi-m
 # === Keybindings: Screen Locking ===
 bindsym $mod+o exec --no-startup-id $HOME/.config/i3/enLock.sh
 bindsym $mod+Shift+o exec --no-startup-id $HOME/.config/i3/diLock.sh
-bindsym $mod+p exec xautolock -locknow
+bindsym $mod+Shift+p exec xautolock -locknow
 
 # === Keybindings: Screenshots ===
 bindsym Print exec maim "/home/$USER/Pictures/$(date).jpg"
@@ -186,7 +186,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
+bindsym $mod+p exec rofi -show powermenu -modi powermenu:$HOME/.config/rofi/rofi-power-menu.sh     
 # === Resize Mode ===
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
