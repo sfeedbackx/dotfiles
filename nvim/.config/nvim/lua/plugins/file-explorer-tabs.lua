@@ -75,20 +75,36 @@ return {
 
             -- Keymaps for buffer navigation
             -- First, make sure you have bufferline required at the top of your config
-            local bufferline = require('bufferline')
+            local bufferline = require("bufferline")
 
-            vim.keymap.set("n", "<Tab>", function() bufferline.cycle(1) end, { desc = "Next Buffer" })
-            vim.keymap.set("n", "<S-Tab>", function() bufferline.cycle(-1) end, { desc = "Previous Buffer" })
-            vim.keymap.set("n", "<leader>bb", function() bufferline.pick() end, { desc = "Pick a Buffer" })
-            vim.keymap.set("n", "<leader>bd", function() vim.api.nvim_buf_delete(0, {}) end,
-                { desc = "Close Current Buffer" })
+            -- Cycle to next/previous buffer
+            vim.keymap.set("n", "<Tab>", function()
+                bufferline.cycle(1)
+            end, { desc = "Next Buffer" })
 
+            vim.keymap.set("n", "<S-Tab>", function()
+                bufferline.cycle(-1)
+            end, { desc = "Previous Buffer" })
 
+            -- Pick buffer
+            vim.keymap.set("n", "<leader>bb", function()
+                bufferline.pick()
+            end, { desc = "Pick a Buffer" })
+
+            -- Delete current buffer (force = true to avoid errors)
+            vim.keymap.set("n", "<leader>bd", function()
+                local buf = vim.api.nvim_get_current_buf()
+                vim.api.nvim_buf_delete(buf, { force = true })
+            end, { desc = "Close Current Buffer" })
+
+            -- Close buffer and switch to the previous one
             vim.keymap.set("n", "<leader>q", function()
                 local current_buf = vim.api.nvim_get_current_buf()
-                vim.cmd("bp")                                          -- Go to the previous buffer
-                vim.api.nvim_buf_delete(current_buf, { force = true }) -- Delete the original buffer
-            end, { desc = "Close buffer and go back" })
+                vim.cmd("bprevious") -- Use full command name
+                if vim.api.nvim_buf_is_valid(current_buf) and vim.api.nvim_buf_is_loaded(current_buf) then
+                    vim.api.nvim_buf_delete(current_buf, { force = true })
+                end
+            end, { desc = "Close Buffer and Go Back" })
         end,
     },
 }

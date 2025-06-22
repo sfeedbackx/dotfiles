@@ -15,7 +15,7 @@ return {
                     layout_strategy = 'horizontal',
                     layout_config = {
                         width = 0.95,        -- total width of the Telescope window
-                        preview_width = 0.7, -- 70% of that width is for preview
+                        preview_width = 0.5, -- 70% of that width is for preview
                     },
                     previewer = true,
                 }

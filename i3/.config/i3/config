@@ -6,20 +6,21 @@
 set $mod Mod4
 font pango:MesloLGS Nerd Font Mono Bold 14 
 default_border pixel 1
-#gaps inner 1
-#gaps outer 1
+#gaps inner 3
+#gaps outer 3
 
 # === Display and Hardware Settings ===
-exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
 set $fm eDP-1
 set $sm HDMI-1
-exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/samt.jpg
+exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/zFigh.jpg
 exec --no-startup-id xsettingsd
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
 # === Startup Programs ===
 #exec --no-startup-id csd-xsettings
+exec --no-startup-id .config/i3/autotiling
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
 exec_always --no-startup-id killall polybar
@@ -93,6 +94,7 @@ set $ws10 "10"
 
 # === Window Assignments ===
 assign [class="Brave-browser"] 2
+assign [class="waterfox"] 2
 assign [class="discord"] 4
 assign [class="zen"] 3
 
@@ -202,4 +204,3 @@ mode "resize" {
     bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
-exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
