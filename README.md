@@ -35,7 +35,7 @@ To set up these dotfiles on your system, follow these steps:
 First, clone this repository to your home directory:
 
 ```bash
-git clone https://github.com/your-username/dotfiles.git
+git clone https://github.com/subomega1/dotfiles.git
 cd dotfiles
 ```
 ### 2. Install GNU Stow
