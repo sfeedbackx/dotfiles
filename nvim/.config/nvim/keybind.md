@@ -1,7 +1,8 @@
 # Neovim Configuration Keybindings
 
 A comprehensive list of keybindings for plugins, LSP, and workflow shortcuts.
-**Leader Key**: `<Space>` (set via `vim.g.mapleader = " "`).
+
+**Leader Key**: `<Space>` (set via `vim.g.mapleader = " "`)
 
 ---
 
@@ -9,6 +10,7 @@ A comprehensive list of keybindings for plugins, LSP, and workflow shortcuts.
 - [Normal Mode](#normal-mode)
 - [Visual Mode](#visual-mode)
 - [Insert Mode](#insert-mode)
+- [Terminal Mode](#terminal-mode)
 - [Plugins](#plugins)
 - [Notes](#notes)
 
@@ -16,57 +18,82 @@ A comprehensive list of keybindings for plugins, LSP, and workflow shortcuts.
 
 ## Normal Mode
 
-### General
+### General Navigation
 | Keybinding           | Description                                  |
 |----------------------|----------------------------------------------|
 | `<leader>pv`         | Open file explorer (Netrw)                   |
 | `J`                  | Join lines (cursor adjusted)                 |
 | `<C-d>`/`<C-u>`      | Half-page down/up (centered cursor)          |
 | `n`/`N`              | Next/previous search result (centered)       |
-| `<leader>f`          | Format buffer with LSP                       |
 | `<leader>s`          | Search/replace word under cursor             |
 | `<leader>x`          | Make file executable (`chmod +x`)            |
-| `<leader><leader>`   | Source current file                          |
 | `<leader>u`          | Toggle **Undotree**                          |
 
-### LSP
+### LSP (Language Server Protocol)
 | Keybinding           | Description                                  |
 |----------------------|----------------------------------------------|
 | `gd`                 | Go to definition                             |
 | `K`                  | Hover documentation                          |
-| `<leader>vws`        | Search workspace symbols                     |
+| `<leader>vcs`        | Search workspace symbols                     |
 | `<leader>vd`         | Show diagnostics in floating window          |
 | `<leader>vca`        | Open code actions                            |
-| `<leader>vrr`        | Find references                              |
-| `<leader>vrn`        | Rename symbol                                |
+| `<leader>vgr`        | Find references                              |
+| `<leader>vcr`        | Rename symbol                                |
 | `[d`/`]d`            | Jump to next/previous diagnostic             |
 
-### Telescope
+### Telescope (Fuzzy Finder)
 | Keybinding           | Description                                  |
 |----------------------|----------------------------------------------|
-| `<C-p>`              | Search files                                 |
+| `<C-p>`              | Search git files                             |
+| `<leader>pf`         | Search all files                             |
 | `<leader>fg`         | Live grep (search text)                      |
+| `<leader>;`          | Search buffers                               |
 
-### Harpoon
+### Harpoon (File Navigation)
 | Keybinding           | Description                                  |
 |----------------------|----------------------------------------------|
 | `<leader>a`          | Add file to Harpoon                          |
 | `<leader>e`          | Toggle Harpoon quick menu                    |
-| `<C-h>`/`<C-t>`      | Navigate to Harpoon file 1/2                 |
-| `<C-n>`/`<C-s>`      | Navigate to Harpoon file 3/4                 |
+| `<C-h>`              | Navigate to Harpoon file 1                   |
+| `<C-t>`              | Navigate to Harpoon file 2                   |
+| `<C-n>`              | Navigate to Harpoon file 3                   |
+| `<C-b>`              | Navigate to Harpoon file 4                   |
 
-### Debugging/Helpers
+### Debugging & Development
 | Keybinding           | Description                                  |
 |----------------------|----------------------------------------------|
 | `<leader>zig`        | Restart LSP                                  |
-| `<leader>ll`         | Trigger linting for current file             |
-| `<leader>ca`         | Start cellular automaton animation           |
+| `<leader>lc`         | Clear lint and restart LSP                   |
+| `<leader>la`         | Trigger linting for current file             |
+| `<leader>ll`         | Trigger cspell linting for current file      |
 
+### Quickfix & Location Lists
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<C-k>`/`<C-j>`      | Next/previous quickfix item                  |
+| `<leader>k`/`<leader>j` | Next/previous location list item          |
 
+### Go Language Helpers
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<leader>ee`         | Insert error check block                     |
+| `<leader>ea`         | Insert assert.NoError                        |
+| `<leader>ef`         | Insert error check with log.Fatalf           |
+| `<leader>el`         | Insert error check with logger.Error        |
+
+### Terminal
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<leader>tt`         | Open terminal                                |
+| `<leader>tf`         | Open terminal                                |
+| `<leader>th`         | Open horizontal terminal                     |
+| `<leader>tv`         | Open vertical terminal                       |
 
 ---
 
 ## Visual Mode
+
+### Text Manipulation
 | Keybinding           | Description                                  |
 |----------------------|----------------------------------------------|
 | `J`/`K`              | Move selected lines down/up                  |
@@ -77,37 +104,80 @@ A comprehensive list of keybindings for plugins, LSP, and workflow shortcuts.
 ---
 
 ## Insert Mode
+
+### Navigation & Completion
 | Keybinding           | Description                                  |
 |----------------------|----------------------------------------------|
 | `<C-c>`              | Exit to Normal mode                          |
-| `<Tab>`/`<S-Tab>`    | Navigate completion/snippets (SuperTab-like) |
 | `<C-h>`              | Signature help (LSP)                         |
+
+---
+
+## Terminal Mode
+
+### Terminal Navigation
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<Esc>`              | Exit terminal mode                           |
+| `<C-\><C-n>`         | Exit terminal mode (original)                |
+| `<C-h>`/`<C-j>`/`<C-k>`/`<C-l>` | Navigate between windows |
+| `<C-w>h`/`<C-w>j`/`<C-w>k`/`<C-w>l` | Navigate between windows (alternative) |
 
 ---
 
 ## Plugins
 
 ### Conform.nvim (Formatting)
-- `<leader>fd`: Format document synchronously.
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<leader>fd`         | Format document synchronously                |
 
 ### nvim-cmp (Completion)
-- `<C-p>`/`<C-n>`: Navigate completion items.
-- `<C-Space>`: Trigger completion menu.
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<C-p>`/`<C-n>`      | Navigate completion items                    |
+| `<C-b>`/`<C-f>`      | Scroll documentation up/down                 |
+| `<C-Space>`          | Trigger completion menu                      |
+| `<CR>`               | Confirm selection                            |
+| `<Tab>`/`<S-Tab>`    | Navigate completion/snippets                 |
 
 ### Linting
-- `<leader>ll`: Lint current file (`nvim-lint`).
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<leader>lc`         | Clear lint and restart LSP                   |
+| `<leader>la`         | Trigger linting for current file             |
+| `<leader>ll`         | Trigger cspell linting for current file      |
 
 ### Undotree
-- `<leader>u`: Toggle Undotree.
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<leader>u`          | Toggle Undotree                              |
+
+### Built-in Terminal
+| Keybinding           | Description                                  |
+|----------------------|----------------------------------------------|
+| `<leader>tt`         | Open terminal                                |
+| `<leader>tf`         | Open terminal                                |
+| `<leader>th`         | Open horizontal terminal                     |
+| `<leader>tv`         | Open vertical terminal                       |
 
 ---
 
 ## Notes
-- **Conflicts**:
-  - `<C-p>`: Used for Telescope file search (Normal) and completion navigation (Insert).
-  - `<C-h>`: Used for Harpoon file 1 (Normal) and LSP signature help (Insert).
-- **Leader Key**: Most bindings start with `<Space>`.
-- **Diagnostics**: Enable with `:lua vim.diagnostic.config(...)`.
+
+### Keybinding Conflicts
+- **`<C-p>`**: Used for Telescope git files (Normal) and completion navigation (Insert)
+- **`<C-h>`**: Used for Harpoon file 1 (Normal) and LSP signature help (Insert)
+
+### Important Reminders
+- **Leader Key**: Most bindings start with `<Space>`
+- **LSP**: Ensure language servers are installed for full functionality
+- **Plugins**: Make sure all required plugins are installed via your package manager
+
+### Customization
+- Keybindings can be modified in your Neovim configuration files
+- Use `:map` to view current keybindings
+- Use `:help key-notation` for key notation reference
 
 ---
 

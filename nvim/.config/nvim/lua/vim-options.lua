@@ -60,3 +60,20 @@ vim.keymap.set(
     "<leader>el",
     "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i"
 )
+
+-- Terminal keybindings (built-in terminal)
+vim.keymap.set("n", "<leader>tt", "<cmd>terminal<CR>", { desc = "Open terminal" })
+vim.keymap.set("n", "<leader>tf", "<cmd>terminal<CR>", { desc = "Open terminal" })
+vim.keymap.set("n", "<leader>th", "<cmd>split<CR><cmd>terminal<CR>", { desc = "Open horizontal terminal" })
+vim.keymap.set("n", "<leader>tv", "<cmd>vsplit<CR><cmd>terminal<CR>", { desc = "Open vertical terminal" })
+
+-- Terminal mode keybindings
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Move to left window" })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Move to window below" })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Move to window above" })
+vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Move to right window" })
+vim.keymap.set("t", "<C-w>h", "<C-\\><C-n><C-w>h", { desc = "Move to left window" })
+vim.keymap.set("t", "<C-w>j", "<C-\\><C-n><C-w>j", { desc = "Move to window below" })
+vim.keymap.set("t", "<C-w>k", "<C-\\><C-n><C-w>k", { desc = "Move to window above" })
+vim.keymap.set("t", "<C-w>l", "<C-\\><C-n><C-w>l", { desc = "Move to right window" })

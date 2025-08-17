@@ -1,4 +1,4 @@
-vim.opt.spell = foldenablel
+vim.opt.spell = true
 vim.opt.spelllang = { "en_us" } -- Add more languages, e.g., { "en_us", "en_gb" }
 vim.opt.spelloptions = "camel"  -- Recognize camelCase boundaries
 vim.opt.guicursor = ""

@@ -18,15 +18,9 @@ return {
     { "hrsh7th/cmp-cmdline" },
   },
   config = function()
-    -- LSP Zero preset
     local lsp = require("lsp-zero").preset("recommended")
 
-    lsp.set_sign_icons({
-      -- Disable the automatic signature help
-      signature_help = nil,
-    })
-
-    lsp.on_attach(function(_, bufnr)
+    lsp.on_attach(function(client, bufnr)
       local opts = { buffer = bufnr, remap = false }
       local map = vim.keymap.set
 
@@ -40,9 +34,23 @@ return {
       map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
       map("n", "[d", vim.diagnostic.goto_next, opts)
       map("n", "]d", vim.diagnostic.goto_prev, opts)
+
+      -- Auto signature help on ( and ,
+      if client.server_capabilities.signatureHelpProvider then
+        vim.api.nvim_create_autocmd("TextChangedI", {
+          buffer = bufnr,
+          callback = function()
+            local char = vim.api.nvim_get_current_line():sub(vim.api.nvim_win_get_cursor(0)[2],
+              vim.api.nvim_win_get_cursor(0)[2])
+            if char == "(" or char == "," then
+              vim.defer_fn(vim.lsp.buf.signature_help, 100)
+            end
+          end,
+        })
+      end
     end)
 
-    -- Diagnostics styling
+    -- Simple diagnostics with rounded borders
     vim.diagnostic.config({
       virtual_text = true,
       signs = true,
@@ -67,14 +75,13 @@ return {
         "jsonls", "html", "elixirls", "tailwindcss",
         "tflint", "dockerls", "bashls",
         "marksman", "cucumber_language_server",
-        "astro", "pylsp", "typos_lsp"
+        "astro", "pylsp"
       },
       handlers = {
         lsp.default_setup,
       }
     })
 
-    -- Autocompletion setup
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
@@ -85,6 +92,10 @@ return {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert({
         ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -131,7 +142,6 @@ return {
       },
     })
 
-    -- Cmdline completions
     cmp.setup.cmdline("/", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = { { name = "buffer" } },

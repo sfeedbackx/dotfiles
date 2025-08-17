@@ -1,3 +1,6 @@
+--[[
+I want to be fast
+idk why I keep it
 return {
     -- File Explorer
     {
@@ -100,11 +103,11 @@ return {
             -- Close buffer and switch to the previous one
             vim.keymap.set("n", "<leader>q", function()
                 local current_buf = vim.api.nvim_get_current_buf()
-                vim.cmd("bprevious") -- Use full command name
+                vim.cmd("bprevious")
                 if vim.api.nvim_buf_is_valid(current_buf) and vim.api.nvim_buf_is_loaded(current_buf) then
                     vim.api.nvim_buf_delete(current_buf, { force = true })
                 end
             end, { desc = "Close Buffer and Go Back" })
         end,
     },
-}
+}]]
