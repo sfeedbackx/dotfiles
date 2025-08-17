@@ -82,53 +82,17 @@ for package in "${CORE_PACKAGES[@]}"; do
     install_package "$package"
 done
 
-echo "🎨 Installing fonts..."
-# Install Nerd Fonts
-if [ ! -d "$HOME/.local/share/fonts" ]; then
-    mkdir -p "$HOME/.local/share/fonts"
-fi
-
-# Download and install MesloLGS NF font
-if [ ! -f "$HOME/.local/share/fonts/MesloLGS NF Regular.ttf" ]; then
-    echo "Installing MesloLGS NF font..."
-    wget -O "$HOME/.local/share/fonts/MesloLGS NF Regular.ttf" \
-        "https://github.com/romkatv/powerlevel10k/raw/master/font/MesloLGS%20NF%20Regular.ttf"
-    wget -O "$HOME/.local/share/fonts/MesloLGS NF Bold.ttf" \
-        "https://github.com/romkatv/powerlevel10k/raw/master/font/MesloLGS%20NF%20Bold.ttf"
-    wget -O "$HOME/.local/share/fonts/MesloLGS NF Italic.ttf" \
-        "https://github.com/romkatv/powerlevel10k/raw/master/font/MesloLGS%20NF%20Italic.ttf"
-    wget -O "$HOME/.local/share/fonts/MesloLGS NF Bold Italic.ttf" \
-        "https://github.com/romkatv/powerlevel10k/raw/master/font/MesloLGS%20NF%20Bold%20Italic.ttf"
-    fc-cache -fv
-fi
-
 echo "🔧 Setting up ZSH..."
 # Run ZSH setup
 if [ -f "zsh/setup.sh" ]; then
     bash zsh/setup.sh
 fi
 
-echo "🎯 Setting up Neovim..."
-# Install Neovim plugins
-if command_exists nvim; then
-    nvim --headless -c "Lazy! sync" -c "qa"
-fi
-
-
-
-echo "🎮 Setting up TLauncher..."
-# Create TLauncher directory if it doesn't exist
-mkdir -p "$HOME/Documents"
-
 echo "📱 Setting up Tmux plugins..."
 # Install Tmux Plugin Manager
 if [ ! -d "$HOME/.config/tmux/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/.tmux/plugins/tpm"
 fi
-
-echo "🎨 Setting up wallpapers..."
-# Create wallpaper directory
-mkdir -p "$HOME/wallpaper"
 
 echo "✅ All dependencies installed!"
 echo "🔧 Next steps:"
