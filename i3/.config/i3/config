@@ -156,6 +156,7 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 
 # === Keybindings: Launchers ===
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 bindsym $mod+space exec --no-startup-id rofi -show combi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 bindsym $mod+w exec --no-startup-id $HOME/dotfiles/rofi/.config/rofi/rofi-wifi-menu.sh
