@@ -56,12 +56,13 @@ fi
 # Get player status for icon
 status=$(playerctl status 2>/dev/null)
 case "$status" in
-    "Playing") icon="▶ " ;;
-    "Paused")  icon="⏸ " ;;
-    *)         icon="" ;;
+    "Playing") icon="󰏤 " ;;
+    "Paused")  icon=" " ;;
+    *)         icon="?? " ;;
 esac
 
 # Truncate and display
 result=$(truncate_text "$info" $MAX_LENGTH)
 echo "$icon$result"
+
 

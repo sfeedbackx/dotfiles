@@ -14,12 +14,12 @@ exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --rate 144
 set $fm eDP-1
 set $sm HDMI-1
 exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/vegitoSB.jpg
-#exec --no-startup-id xsettingsd
+exec --no-startup-id xsettingsd
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
 # === Startup Programs ===
-exec --no-startup-id csd-xsettings
+#exec --no-startup-id csd-xsettings
 exec --no-startup-id .config/i3/autotiling
 exec --no-startup-id nm-applet
 exec --no-startup-id picom

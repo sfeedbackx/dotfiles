@@ -162,6 +162,66 @@ A comprehensive list of keybindings for plugins, LSP, and workflow shortcuts.
 | `<leader>tv`         | Open vertical terminal                       |
 
 ---
+## ⌨️ Cheat Sheet: Terminal + Neovim
+
+---
+
+### 🖥️ Terminal (Bash/Zsh/Kitty etc.)
+
+| Shortcut   | Action                              |
+| ---------- | ----------------------------------- |
+| `Ctrl + a` | Move to **start of line**           |
+| `Ctrl + e` | Move to **end of line**             |
+| `Alt + b`  | Move back **one word**              |
+| `Alt + f`  | Move forward **one word**           |
+| `Ctrl + u` | Delete from cursor → start of line  |
+| `Ctrl + k` | Delete from cursor → end of line    |
+| `Ctrl + w` | Delete previous word                |
+| `Alt + d`  | Delete next word                    |
+| `Ctrl + r` | Reverse search in history           |
+| `Ctrl + l` | Clear screen                        |
+| `!!`       | Repeat last command                 |
+| `!ls`      | Run last command starting with `ls` |
+
+---
+
+### 📝 Neovim (Insert Mode)
+
+| Shortcut          | Action                                  |
+| ----------------- | --------------------------------------- |
+| `Ctrl + h`        | Delete one char before cursor           |
+| `Ctrl + w`        | Delete word before cursor               |
+| `Ctrl + u`        | Delete to start of line                 |
+| `Ctrl + t`        | Increase indent                         |
+| `Ctrl + d`        | Decrease indent                         |
+| `Ctrl + n`        | Autocomplete (next word)                |
+| `Ctrl + p`        | Autocomplete (previous word)            |
+| `Ctrl + x Ctrl+f` | Filename completion                     |
+| `Ctrl + o`        | Run one Normal-mode command then return |
+
+---
+
+### 🏹 Neovim (Normal Mode – essentials)
+
+| Shortcut   | Action                  |
+| ---------- | ----------------------- |
+| `:w`       | Save file               |
+| `:q`       | Quit                    |
+| `:wq`      | Save + quit             |
+| `:q!`      | Quit without saving     |
+| `i`        | Insert before cursor    |
+| `a`        | Insert after cursor     |
+| `o`        | New line below + insert |
+| `dd`       | Delete line             |
+| `yy`       | Yank (copy) line        |
+| `p`        | Paste                   |
+| `u`        | Undo                    |
+| `Ctrl + r` | Redo                    |
+| `/text`    | Search for “text”       |
+| `n`        | Next search result      |
+| `N`        | Previous search result  |
+
+---
 
 ## Notes
 
