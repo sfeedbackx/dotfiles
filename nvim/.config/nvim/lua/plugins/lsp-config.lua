@@ -10,6 +10,7 @@ return {
     -- Autocompletion
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-nvim-lsp-signature-help" },
     { "L3MON4D3/LuaSnip" },
     { "rafamadriz/friendly-snippets" },
     { "saadparwaiz1/cmp_luasnip" },
@@ -35,22 +36,8 @@ return {
       map("n", "[d", vim.diagnostic.goto_next, opts)
       map("n", "]d", vim.diagnostic.goto_prev, opts)
 
-      -- Auto signature help on ( and ,
-      if client.server_capabilities.signatureHelpProvider then
-        vim.api.nvim_create_autocmd("TextChangedI", {
-          buffer = bufnr,
-          callback = function()
-            local char = vim.api.nvim_get_current_line():sub(vim.api.nvim_win_get_cursor(0)[2],
-              vim.api.nvim_win_get_cursor(0)[2])
-            if char == "(" or char == "," then
-              vim.defer_fn(vim.lsp.buf.signature_help, 100)
-            end
-          end,
-        })
-      end
     end)
 
-    -- Simple diagnostics with rounded borders
     vim.diagnostic.config({
       virtual_text = true,
       signs = true,
@@ -125,6 +112,7 @@ return {
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
         { name = "luasnip", keyword_length = 2 },
         { name = "buffer",  keyword_length = 3 },
         { name = "path" },
@@ -133,6 +121,7 @@ return {
         format = function(entry, vim_item)
           vim_item.menu = ({
             nvim_lsp = "[LSP]",
+            nvim_lsp_signature_help = "[Sig]",
             luasnip = "[Snippet]",
             buffer = "[Buffer]",
             path = "[Path]",
