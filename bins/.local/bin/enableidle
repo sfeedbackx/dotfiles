@@ -1,0 +1,4 @@
+#!/bin/sh
+pkill hypridle;
+hypridle & disown
+notify-send "Idle enabled"

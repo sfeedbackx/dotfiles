@@ -1,0 +1,21 @@
+prompt-text = ">"
+
+result-spacing = 25
+
+text-color = #cdd6f4
+prompt-color = #f38ba8
+selection-color = #f9e2af
+background-color = #1e1e2e
+
+corner-radius = 10
+outline-color = #8caaee
+outline-width = 1
+border-color = #8caaee
+border-width = 1
+num-results = 9
+# hide-cursor = true
+width = 640
+height = 350
+font = Cantarell
+font-variations = "wght 600"
+font-size = 18
