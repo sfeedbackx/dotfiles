@@ -4,8 +4,10 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export GTK_THEME="Adapta-Nokto"
+#export GTK_THEME="AdwaitaDark"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -15,19 +17,19 @@ export GTK_THEME="Adapta-Nokto"
 ZSH_THEME=""
 
 # Uncomment one of the following lines to change the auto-update behavior
-zstyle ':omz:update' mode auto      # update automatically without asking
+#zstyle ':omz:update' mode auto      # update automatically without asking
 
 # Uncomment the following line to change how often to auto-update (in days).
-zstyle ':omz:update' frequency 7
+#zstyle ':omz:update' frequency 7
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
 # Performance: disable marking untracked files under VCS as dirty for large repos
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # History settings
 HIST_STAMPS="yyyy-mm-dd"
@@ -66,7 +68,6 @@ fi
 
 # Personal aliases
 alias vim="nvim"
-alias mine="java -jar ~/Documents/TLauncher.jar"
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias ll="ls -alF"
@@ -77,27 +78,8 @@ alias l="ls -CF"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/.spicetify:$PATH"
-export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
-export PATH="$HOME/Documents/compilatedProgram/cmake/install/bin:$PATH"
-export PATH="$HOME/.fzf/bin:$PATH"
-export PATH="$HOME/Downloads/waterfox:$PATH"
 
-# NVM configuration
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# FZF configuration
-if command -v fzf >/dev/null 2>&1; then
-    # Set up fzf key bindings and fuzzy completion
-    source <(fzf --zsh)
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    
-    # FZF options
-    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-    export FZF_CTRL_T_OPTS="--preview 'cat {}' --preview-window=right:50%"
-fi
 
 # Starship prompt (should be last)
 if command -v starship >/dev/null 2>&1; then
@@ -130,3 +112,9 @@ extract() {
         echo "'$1' is not a valid file!"
     fi
 }
+source <(fzf --zsh)
+fastfetch
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

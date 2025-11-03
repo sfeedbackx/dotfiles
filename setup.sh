@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Comprehensive Dotfiles Setup Script
-# This script installs all dependencies required for all configurations
+# ZSH Configuration Setup Script
+# This script installs all dependencies required for the zsh configuration
 
-echo "🚀 Setting up all dotfiles configurations..."
+echo "🚀 Setting up ZSH configuration..."
 
 # Check if running as root
 if [[ $EUID -eq 0 ]]; then
@@ -32,71 +32,48 @@ install_package() {
     fi
 }
 
-echo "📦 Installing core dependencies..."
+echo "📦 Installing ZSH dependencies..."
 
-# Core system packages
-CORE_PACKAGES=(
-    "git"
-    "curl"
-    "wget"
-    "stow"
-    "xrandr"
-    "feh"
-    "i3lock"
-    "kitty"
-    "thunar"
-    "rofi"
-    "maim"
-    "xdotool"
-    "xclip"
-    "pulseaudio-utils"
-    "brightnessctl"
-    "picom"
-    "polybar"
-    "tmux"
-    "neovim"
-    "zsh"
-    "lxappearance"
-    "arandr"
-    "xautolock"
-    "betterlockscreen"
-    "network-manager"
-    "network-manager-gnome"
-    "policykit-1-gnome"
-    "setxkbmap"
-    "xrdb"
-    "xset"
-    "pactl"
-    "playerctl"
-    "python3"
-    "python3-pip"
-    "nodejs"
-    "npm"
-    "java"
-    "cmake"
-    "build-essential"
-)
-
-for package in "${CORE_PACKAGES[@]}"; do
-    echo "Installing $package..."
-    install_package "$package"
-done
-
-echo "🔧 Setting up ZSH..."
-# Run ZSH setup
-if [ -f "zsh/setup.sh" ]; then
-    bash zsh/setup.sh
+# Install ZSH if not present
+if ! command_exists zsh; then
+    echo "Installing ZSH..."
+    install_package zsh
 fi
 
-echo "📱 Setting up Tmux plugins..."
-# Install Tmux Plugin Manager
-if [ ! -d "$HOME/.config/tmux/.tmux/plugins/tpm" ]; then
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/.tmux/plugins/tpm"
+# Install Oh My Zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing Oh My Zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-echo "✅ All dependencies installed!"
+
+# Install ZSH plugins
+echo "Installing ZSH plugins..."
+
+# zsh-autosuggestions
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+# zsh-syntax-highlighting
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
+# fast-syntax-highlighting
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting" ]; then
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+fi
+
+# zsh-autocomplete
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete" ]; then
+    git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+fi
+
+
+
+
+
+echo "✅ ZSH setup complete!"
 echo "🔧 Next steps:"
-echo "1. Run 'stow <config-name>' for each configuration you want to use"
-echo "2. Restart your system or log out and back in"
-echo "3. Configure Powerlevel10k: p10k configure"
-echo "4. Install Tmux plugins: tmux source ~/.tmux.conf"
+echo "1. Restart your terminal or run: source ~/.zshrc"

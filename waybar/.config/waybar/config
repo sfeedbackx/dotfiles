@@ -12,7 +12,6 @@
   "modules-center": ["clock"],
 
   "modules-right": [
- //   "tray",
     "custom/music",
     "custom/pomodoro",
     "bluetooth",
@@ -20,6 +19,7 @@
     "pulseaudio", 
     "backlight",
     "battery",
+    "tray",
   ],
 
   "hyprland/workspaces": {
@@ -51,7 +51,7 @@
     "tooltip": false,
     "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
     "on-click": "playerctl play-pause",
-    "max-length": 50
+    "max-length": 20
   },
 
   "clock": {
