@@ -1,6 +1,10 @@
-vim.opt.spell = true
+--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+vim.opt.spell = false
 vim.opt.spelllang = { "en_us" } -- Add more languages, e.g., { "en_us", "en_gb" }
-vim.opt.spelloptions = "camel"  -- Recognize camelCase boundaries
+vim.opt.spelloptions = "camel" -- Recognize camelCase boundaries
 vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -31,9 +35,9 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
 -- Enable folding ( setup in nvim-ufo )
-vim.o.foldenable = true     -- Enable folding by default
+vim.o.foldenable = true -- Enable folding by default
 vim.o.foldmethod = "manual" -- Default fold method (change as needed)
-vim.o.foldlevel = 99        -- Open most folds by default
+vim.o.foldlevel = 99 -- Open most folds by default
 vim.o.foldcolumn = "0"
 
 -- backspace
@@ -44,7 +48,7 @@ vim.opt.splitright = true --split vertical window to the right
 vim.opt.splitbelow = true --split horizontal window to the bottom
 
 vim.opt.isfname:append("@-@")
-vim.opt.updatetime = 50
+vim.opt.updatetime = 200
 vim.opt.colorcolumn = "80"
 
 -- clipboard
