@@ -38,7 +38,7 @@ icons[shutdown]="\Uf0425"
 icons[cancel]="\Uf0156"
 
 declare -A actions
-actions[lockscreen]="xautolock -locknow"
+actions[lockscreen]="i3lock-fancy"
 #actions[switchuser]="???"
 actions[logout]="loginctl terminate-session ${XDG_SESSION_ID-}"
 actions[suspend]="$HOME/.config/rofi/sus-lock.sh "

@@ -5,8 +5,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GTK_THEME="Adapta-Nokto"
 #export GTK_THEME="AdwaitaDark"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -78,6 +76,7 @@ alias l="ls -CF"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/flutter/bin/:$PATH"
 
 
 

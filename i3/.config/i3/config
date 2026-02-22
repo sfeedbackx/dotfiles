@@ -4,28 +4,29 @@
 
 # === General Settings ===
 set $mod Mod4
-font pango:MesloLGS Nerd Font Mono Bold 14 
-default_border none
+font pango:JetBrains Mono Nerd Font 14
+default_border pixel 4
 gaps inner 4
 gaps outer 4
 
 # === Display and Hardware Settings ===
-exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --rate 144 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+exec --no-startup-id xrandr --output eDP-1 --primary --scale 1.25x1.25 --mode 1920x1080 --rate 144 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal
 set $fm eDP-1
 set $sm HDMI-1
-exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/GSGpOAEXQAAU_eK.jpeg
-exec --no-startup-id xsettingsd
+exec_always --no-startup-id feh --bg-scale -F $HOME/wallpaper/dbzVeg.jpg
+#exec --no-startup-id xsettingsd
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
 # === Startup Programs ===
 #exec --no-startup-id csd-xsettings
-exec --no-startup-id .config/i3/autotiling
+exec --no-startup-id ~/.config/i3/autotiling
 exec --no-startup-id nm-applet
 exec --no-startup-id picom
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch_polybar.sh
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id greenclip daemon
 
 
 # === Screen Locking and Power Management ===
@@ -33,7 +34,7 @@ exec --no-startup-id xset +dpms          # Explicitly ENABLE DPMS (critical!)
 exec --no-startup-id xset dpms 600 900 950 # Standby: 10m (600s), Suspend: 15m (900s), Off: Never (0)
 exec --no-startup-id xset s noblank      # Disable screensaver-driven blanking
 exec --no-startup-id xset s off          # Disable legacy screensaver entirely
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen -l" -detectsleep
+exec --no-startup-id xautolock -time 10 -locker "i3lock-fancy -p" -detectsleep
 
 # === Color Scheme ===
 set $rosewater #f5e0dc
@@ -64,7 +65,7 @@ set $mantle    #181825
 set $crust     #11111b
 
 # === Window Appearance ===
-client.focused           $blue     $blue   $text  $blue   $text
+client.focused           $blue     $base   $text  $blue   $blue
 client.focused_inactive  $surface0 $surface0 $subtext0 $surface0 $subtext0
 client.unfocused         $surface0 $surface0 $subtext0 $surface0 $subtext0
 client.urgent            $red      $red    $text  $red    $text
@@ -98,9 +99,9 @@ assign [class="zen"] 3
 
 # === Keybindings: Basic Window Management ===
 floating_modifier $mod
-bindsym $mod+Return exec kitty
-bindsym $mod+Shift+A kill
-bindsym $mod+x exec thunar
+bindsym $mod+Return exec ghostty
+bindsym $mod+c kill
+bindsym $mod+x exec nautilus
 
 # === Keybindings: Focus and Movement ===
 bindsym $mod+h focus left
@@ -123,7 +124,7 @@ bindsym $mod+Shift+Right move right
 
 # === Keybindings: Layout and Container Management ===
 bindsym $mod+m split h
-bindsym $mod+v split v
+bindsym $mod+| split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
@@ -155,16 +156,17 @@ bindsym $mod+Shift+ccedilla move container to workspace number $ws9
 bindsym $mod+Shift+agrave move container to workspace number $ws10
 
 # === Keybindings: Launchers ===
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+space exec --no-startup-id rofi -show drun
+bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
-bindsym $mod+space exec --no-startup-id rofi -show combi
+bindsym $mod+d exec --no-startup-id rofi -show combi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 bindsym $mod+w exec --no-startup-id $HOME/dotfiles/rofi/.config/rofi/rofi-wifi-menu.sh
 
 # === Keybindings: Screen Locking ===
 bindsym $mod+o exec --no-startup-id $HOME/.config/i3/enLock.sh
 bindsym $mod+Shift+o exec --no-startup-id $HOME/.config/i3/diLock.sh
-bindsym $mod+Shift+p exec xautolock -locknow
+bindsym $mod+Shift+p exec i3lock-fancy -p
 
 # === Keybindings: Screenshots ===
 bindsym Print exec maim "/home/$USER/Pictures/$(date).jpg"
