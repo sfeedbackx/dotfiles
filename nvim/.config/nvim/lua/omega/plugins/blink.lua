@@ -57,6 +57,7 @@ return { -- Autocompletion
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			preset = "default",
+			["<A-y>"] = require("minuet").make_blink_map(),
 
 			-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 			--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -99,7 +100,8 @@ return { -- Autocompletion
 		completion = {
 			-- By default, you may press `<c-space>` to show the documentation.
 			-- Optionally, set `auto_show = true` to show the documentation after a delay.
-			documentation = { auto_show = false, auto_show_delay_ms = 500 },
+			ghost_text = { enabled = true },
+			documentation = { auto_show = true, auto_show_delay_ms = 500 },
 			menu = {
 				draw = {
 					columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } },
@@ -111,6 +113,16 @@ return { -- Autocompletion
 			default = { "lsp", "path", "snippets", "lazydev", "buffer" },
 			providers = {
 				lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+
+				minuet = {
+					name = "minuet",
+					module = "minuet.blink",
+					async = true,
+					-- Should match minuet.config.request_timeout * 1000,
+					-- since minuet.config.request_timeout is in seconds
+					-- timeout_ms = 3000,
+					score_offset = 50, -- Gives minuet higher priority among suggestions
+				},
 			},
 		},
 

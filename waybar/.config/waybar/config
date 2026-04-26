@@ -19,6 +19,7 @@
     "pulseaudio", 
     "backlight",
     "battery",
+    "hyprland/language",
     "tray",
   ],
 
@@ -29,6 +30,13 @@
       "default": ""
     }
   },
+
+"hyprland/language": {
+    "format": " {}",
+    "format-en": "EN",
+    "format-fr": "FR",
+    "format-ara": "AR"
+},
 
   "bluetooth": {
     "format": "󰂲",

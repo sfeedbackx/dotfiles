@@ -25,6 +25,7 @@ return {
 					automatic_enable = {
 						exclude = {
 							"jdtls",
+							"dartls",
 						},
 					},
 				},
@@ -232,6 +233,17 @@ return {
 						},
 					},
 				},
+				dartls = {
+					cmd = { vim.fn.expand("~/flutter/bin/dart"), "language-server", "--protocol=lsp" },
+					settings = {
+						dart = {
+							showTodos = true,
+							completeFunctionCalls = true,
+							analysisExcludedFolders = { vim.fn.expand("$HOME/.pub-cache") },
+							updateImportsOnRename = true,
+						},
+					},
+				},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -248,6 +260,10 @@ return {
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
+
+			ensure_installed = vim.tbl_filter(function(name)
+				return name ~= "dartls"
+			end, ensure_installed)
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
 			})
@@ -258,7 +274,7 @@ return {
 				automatic_installation = false,
 				handlers = {
 					function(server_name)
-						if server_name == "jdtls" then
+						if server_name == "jdtls" or server_name == "dartls" then
 							return
 						end
 						local server = servers[server_name] or {}
@@ -270,6 +286,12 @@ return {
 					end,
 				},
 			})
+			-- Set up dartls directly (not via Mason)
+			local dartls_config = servers["dartls"] or {}
+			dartls_config.capabilities =
+				vim.tbl_deep_extend("force", {}, capabilities, dartls_config.capabilities or {})
+			vim.lsp.config("dartls", dartls_config)
+			vim.lsp.enable("dartls")
 		end,
 	},
 	{ "mfussenegger/nvim-jdtls" },
